@@ -13,7 +13,7 @@ def position_show(position):
         offset = 6
 
         
-        print( '\n' + str(igraj.player) + '. igralec')
+        print( '\n' + str(igraj.player))
         print(SEP + '\n')
 
         for points in position:
@@ -25,7 +25,7 @@ def position_show(position):
 
 # Here starts the game loop.
 
-while not igraj.end():
+while not igraj.end()[0]:
     position_show(igraj.position)
 
     while True:
@@ -40,8 +40,11 @@ while not igraj.end():
     igraj.poteza(row, num)
 
 
-print('Konec igre' + '\n' + SEP)
+
+
 position_show(igraj.position)
+igraj.change_player()
+print('\nKonec igre! Zmagovalec je:' + igraj.player + '\n' + SEP)
 
 
 
