@@ -1,5 +1,4 @@
-
-
+# coding=utf-8
 
 class igra:
     def __init__(self, position = [1, 3, 5, 7]):
