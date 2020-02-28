@@ -29,7 +29,7 @@ class igra:
             return True
 
     def end(self):
-        '''Funkcija se zažene na začetku vsakega kroga kjer najprej določi igralca, ki je na vrsti.Nato preveri ali je na plošči ostala le še ena palica in je torej igra končana. Ča je slednje res vrne True in zmagovalnega igralca, v nasprotnem primeru pa False in igralca, ki bo na vrsti v nasledni potezi.  '''
+        '''Funkcija se zažene na začetku vsakega kroga kjer najprej določi igralca, ki je na vrsti.Nato preveri ali je na plošči ostala le še ena palica in je torej igra končana. Ča je slednje res vrne True in igralca, ki je izgubil, v nasprotnem primeru pa False in igralca, ki bo na vrsti v nasledni potezi.  '''
         
         self.change_player()
         
