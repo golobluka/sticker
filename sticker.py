@@ -28,18 +28,18 @@ class igra:
             return True
 
     def end(self):
-        '''Funkcija se zažene na začetku vsakega kroga kjer najprej določi igralca, ki je na vrsti.Nato preveri ali je na plošči ostala le še ena palica in je torej igra končana. Ča je slednje res vrne True in igralca, ki je izgubil, v nasprotnem primeru pa False in igralca, ki bo na vrsti v nasledni potezi.  '''
+        '''Funkcija se zažene na začetku vsakega kroga kjer preveri ali je na plošči ostala le še ena palica in je torej igra končana. Ča je slednje res vrne True, v nasprotnem primeru pa False.  '''
         
-        self.change_player()
+    
         
         sum = 0
         for points in self.position:
             sum += points
         
         if sum == 1:
-            return (True, self.player)
+            return True
         else:
-            return (False, self.player)
+            return False
 
     def change_player(self):
         '''Funkcija ničesar ne sprejme ali vrne. Spremeni igralca na vrsti, v kolikor pa ta še ni določen (na začetku igre) ga nastavi na 'player1'.'''

@@ -26,7 +26,8 @@ def position_show(position):
 
 # Here starts the game loop.
 
-while not igraj.end()[0]:
+while not igraj.end():
+    igraj.change_player()
     position_show(igraj.position)
 
     while True:
