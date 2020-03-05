@@ -5,7 +5,7 @@ class igra:
         self.position = position
         self.player = None
     
-    def poteza(self, row, num):
+    def move(self, row, num):
         '''Funkcija sprejme vrstico in število oduzetih palic iz taiste vratice ter nato spremeni pozicijo na plošči. '''
         self.position[int(row) - 1] = int(self.position[int(row) - 1]) - int(num)
 

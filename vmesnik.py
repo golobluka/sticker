@@ -39,7 +39,7 @@ while not igraj.end():
         num = int(input('Vpiši še število oduzetih palic:'))
         if igraj.available_number(row, num):
             break
-    igraj.poteza(row, num)
+    igraj.move(row, num)
 
 
 

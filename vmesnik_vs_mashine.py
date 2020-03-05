@@ -54,7 +54,7 @@ while not igraj.end():
         num = int(input('Vpiši še število oduzetih palic:'))
         if igraj.available_number(row, num):
             break
-    igraj.poteza(row, num)
+    igraj.move(row, num)
     position_show(igraj.position)
 
     # Part when mashine thinks.
@@ -62,7 +62,7 @@ while not igraj.end():
     thinking(3)
 
     num2, row2 = mashine_play.move(igraj.position)
-    igraj.poteza(row2, num2)
+    igraj.move(row2, num2)
 
 
 
