@@ -31,15 +31,15 @@ while not igraj.end():
     position_show(igraj.position)
 
     while True:
-        row = int(input('Vpiši vrstico oduzema:'))
-        if igraj.available_row(row):
+        row = input('Vpiši vrstico oduzema:')
+        num = input('Vpiši še število oduzetih palic:')
+       
+        if igraj.move(row, num) == 'Input is valid':
             break
-    
-    while True:
-        num = int(input('Vpiši še število oduzetih palic:'))
-        if igraj.available_number(row, num):
-            break
-    igraj.move(row, num)
+        elif igraj.move(row, num) == 'Row invalid':
+            print('Vnos vrstice je neveljaven!')
+        elif igraj.move(row, num) == 'Num invalid':
+            print('Vnos števila odvzetih kart je neveljaven!')
 
 
 
