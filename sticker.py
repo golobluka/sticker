@@ -1,31 +1,39 @@
 # coding=utf-8
 
-class igra:
+
+
+class Igra:
     def __init__(self, position = [1, 3, 5, 7]):
         self.position = position
-        self.player = None
+        self.player = 'player1'
     
     def move(self, row, num):
         '''Funkcija z validacijskimi metodami preveri pravilnost vnesenih podatkov. Če so podatki pravilni vrne 'Input is valid', sprejme vrstico in število oduzetih palic iz taiste vratice ter nato spremeni pozicijo na plošči. '''
-        
+
+        #Preveri validacijo
         if self.validation_row(row) == 'Row invalid':
             return 'Row invalid'
         elif self.validation_num(row, num) == 'Num invalid':
             return 'Num invalid'
         
+        #Spremeni igralca in pozicijo
+        self.change_player()
+
         self.position[int(row) - 1] = int(self.position[int(row) - 1]) - int(num)
 
+        #Preveri ali je igra končana
+        if self.end():
+            return 'Game over, winner is {}'.format(self.player)
+        
         return 'Input is valid'
 
 
     def end(self):
-        '''Funkcija se zažene na začetku vsakega kroga kjer preveri ali je na plošči ostala le še ena palica in je torej igra končana. Ča je slednje res vrne True, v nasprotnem primeru pa False.  '''
+        '''Funkcija se zažene na začetku vsakega kroga kjer preveri ali je na plošča prazna in je torej igra končana. Ča je slednje res vrne True, v nasprotnem primeru pa False.  '''
         
-        sum = 0
-        for points in self.position:
-            sum += points
+        stevilo_praznih_vrstic = self.position.count(0)
         
-        if sum == 1:
+        if stevilo_praznih_vrstic == len(self.position):
             return True
         else:
             return False
@@ -76,4 +84,29 @@ class igra:
             return 'Num invalid'
 
        
+
+
+class Sticker:
+    def __init__(self):
+        self.igre = {}
+
+    def add_new_id(self):
+        if self.igre == {}:
+            return 0
+        else:
+            return max(self.igre.keys()) + 1
+    
+    def new_game(self,position = [1,3,5,7]):
+        id_igre = self.add_new_id()
+        game = Igra()
+        
+        self.igre[id_igre] = game
+        return id_igre
+
+    def remove_id(self, id_igre):
+        if id_igre in igre.keys():
+            self.igre.pop(id_igre)
+            return True
+        else:
+            return False
 
