@@ -2,7 +2,9 @@
 
 import sticker
 
-igraj = sticker.igra()
+game = sticker.Sticker()
+id_igre = game.new_game()
+igra = game.igre[id_igre]
 
 
 # Writing tools.
@@ -14,7 +16,7 @@ def position_show(position):
         offset = 6
 
         
-        print( '\n' + str(igraj.player))
+        print( '\n' + str(igra.player))
         print(SEP + '\n')
 
         for points in position:
@@ -25,27 +27,31 @@ def position_show(position):
         print(SEP)
 
 # Here starts the game loop.
+game_end = False
 
-while not igraj.end()[0]:
-    position_show(igraj.position)
+while not game_end:
+    position_show(igra.position)
 
     while True:
-        row = int(input('Vpiši vrstico oduzema:'))
-        if igraj.available_row(row):
+        row = input('Vpiši vrstico oduzema:')
+        num = input('Vpiši še število oduzetih palic:')
+
+        stanje = igra.move(row, num)
+        if stanje == 'Input is valid':
             break
-    
-    while True:
-        num = int(input('Vpiši še število oduzetih palic:'))
-        if igraj.available_number(row, num):
+        elif stanje == 'Game over, winner is {}'.format(igra.player):
+            game_end = True
             break
-    igraj.poteza(row, num)
+        elif stanje == 'Row invalid':
+            print('Vnos vrstice je neveljaven!')
+        elif stanje == 'Num invalid':
+            print('Vnos števila odvzetih kart je neveljaven!')
 
 
 
 
-position_show(igraj.position)
-igraj.change_player()
-print('\nKonec igre! Zmagovalec je:' + igraj.player + '\n' + SEP)
+position_show(igra.position)
+print('\nKonec igre! Zmagovalec je:' + igra.player + '\n' + SEP)
 
 
 
