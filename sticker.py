@@ -98,13 +98,13 @@ class Sticker:
     
     def new_game(self,position = [1,3,5,7]):
         id_igre = self.add_new_id()
-        game = Igra()
+        game = Igra(position)
         
         self.igre[id_igre] = game
         return id_igre
 
     def remove_id(self, id_igre):
-        if id_igre in igre.keys():
+        if id_igre in self.igre.keys():
             self.igre.pop(id_igre)
             return True
         else:
