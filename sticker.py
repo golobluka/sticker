@@ -1,4 +1,5 @@
 # coding=utf-8
+import maschine_play
 
 
 
@@ -10,22 +11,34 @@ class Igra:
     def move(self, row, num):
         '''Funkcija z validacijskimi metodami preveri pravilnost vnesenih podatkov. Če so podatki pravilni vrne 'Input is valid', sprejme vrstico in število oduzetih palic iz taiste vratice ter nato spremeni pozicijo na plošči. '''
 
+        
         #Preveri validacijo
-        if self.validation_row(row) == 'Row invalid':
+        validation_string ,row = self.validation_row(row)
+        
+        if validation_string == 'Row invalid':
             return 'Row invalid'
-        elif self.validation_num(row, num) == 'Num invalid':
+        
+        validation_string, num = self.validation_num(row, num)
+        if validation_string == 'Num invalid':
             return 'Num invalid'
+        
         
         #Spremeni igralca in pozicijo
         self.change_player()
 
-        self.position[int(row) - 1] = int(self.position[int(row) - 1]) - int(num)
+        self.position[row - 1] = self.position[row - 1] - num
 
         #Preveri ali je igra končana
         if self.end():
             return 'Game over, winner is {}'.format(self.player)
         
         return 'Input is valid'
+
+    def move_maschine(self, difficulty = 'biginner'):
+        row, num = maschine_play.maschine(self.position, difficulty)
+        return_string = self.move(row, num)
+
+        return return_string, row, num
 
 
     def end(self):
@@ -51,37 +64,38 @@ class Igra:
     # validacijske funkcije
 
     def validation_row(self, row):
-        try:
-            float(row)
-        except:
-            return 'Row invalid'
+       try:
+           float(row)
+       except:
+           return 'Row invalid', row
+       row = float(row)
+       if row.is_integer():
+           row = int(row)
+           if 0 < row and row <= len(self.position) and self.position[row - 1] != 0:
+               return 'Row is valid', row
+           else:
+               return 'Row invalid', row
+       else:
+           return 'Row invalid', row
 
-        row = float(row)
-
-        if row.is_integer():
-            if 0 < row and row <= len(self.position) and self.position[int(row) - 1] != 0:
-                return 'Row is valid'
-            else:
-                return 'Row invalid'
-        else:
-            return 'Row invalid'
-    
     def validation_num(self, row, num):
         try:
             float(num)
         except:
-            return 'Num invalid'
+            return 'Num invalid', num
 
         num = float(num)
-        row = int(row)
 
+        
         if num.is_integer():
+            num = int(num)
             if num > 0 and num <= self.position[row - 1]:
-                return 'Num is valid'
+                return 'Num is valid', num
             else:
-                return 'Num invalid'
+                return 'Num invalid', num
         else:
-            return 'Num invalid'
+            return 'Num invalid', num
+
 
        
 
