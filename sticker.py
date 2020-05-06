@@ -4,7 +4,9 @@ import maschine_play
 
 
 class Igra:
-    def __init__(self, position = [1, 3, 5, 7]):
+    def __init__(self, position=None):
+        if not position:
+            position = [1,3,5,7]
         self.position = position
         self.player = 'player1'
     
@@ -34,9 +36,12 @@ class Igra:
         
         return 'Input is valid'
 
-    def move_maschine(self, difficulty = 'biginner'):
+    def move_maschine(self, difficulty):
         row, num = maschine_play.maschine(self.position, difficulty)
+        
         return_string = self.move(row, num)
+        if difficulty != 'biginner' and difficulty != 'advanced':
+            return_string = 'Difficulty invalid'
 
         return return_string, row, num
 
@@ -89,6 +94,7 @@ class Igra:
         
         if num.is_integer():
             num = int(num)
+            
             if num > 0 and num <= self.position[row - 1]:
                 return 'Num is valid', num
             else:
@@ -110,7 +116,7 @@ class Sticker:
         else:
             return max(self.igre.keys()) + 1
     
-    def new_game(self,position = [1,3,5,7]):
+    def new_game(self,position=None):
         id_igre = self.add_new_id()
         game = Igra(position)
         
