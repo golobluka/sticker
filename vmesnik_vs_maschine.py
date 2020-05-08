@@ -81,6 +81,9 @@ while not game_end:
             print('Vnos števila odvzetih kart je neveljaven!')
         elif stanje == 'Difficulty invalid':
             print('Težavnostna stopnja je neveljavna!')
+            game_end = True
+            break
+            
 
     
     position_show(igra.position)
@@ -89,7 +92,7 @@ while not game_end:
 
     while True and not game_end:
         thinking(3)
-        stanje, row_m, num_m = igra.move_maschine('advenced')
+        stanje, row_m, num_m = igra.move_maschine('advanced')
         if stanje == 'Input is valid':
             break
         elif stanje == 'Game over, winner is {}'.format(igra.player):
@@ -103,6 +106,8 @@ while not game_end:
             print('Vnos števila odvzetih kart je neveljaven!')
         elif stanje == 'Difficulty invalid':
             print('Težavnostna stopnja je neveljavna!')
+            game_end = True
+            break
 
     
 

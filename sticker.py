@@ -37,13 +37,13 @@ class Igra:
         return 'Input is valid'
 
     def move_maschine(self, difficulty):
-        row, num = maschine_play.maschine(self.position, difficulty)
-        
-        return_string = self.move(row, num)
-        if difficulty != 'biginner' and difficulty != 'advanced':
-            return_string = 'Difficulty invalid'
+        if self.validation_difficulty(difficulty) == 'Difficulty invalid':
+            return 'Difficulty invalid', None, None
+        else:
+            row, num = maschine_play.maschine(self.position, difficulty)
+            return_string = self.move(row, num)
 
-        return return_string, row, num
+            return return_string, row, num
 
 
     def end(self):
@@ -101,6 +101,12 @@ class Igra:
                 return 'Num invalid', num
         else:
             return 'Num invalid', num
+    
+    def validation_difficulty(self,difficulty):
+        if difficulty != 'biginner' and difficulty != 'advanced':
+            return 'Difficulty invalid'
+        else:
+            return 'Difficulty is valid'
 
 
        

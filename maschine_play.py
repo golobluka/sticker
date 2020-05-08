@@ -16,11 +16,12 @@ def analiza(position, difficulty):
 
     pos_mat = zapis_mat(position)
     pos_nabor = zapis_nabor(position)
-
+    
+    #Robni primeri
     if pos_mat == {(1,1)}:
             return ((0,1),)
 
-    #Robni primeri
+    
     if difficulty == 'advanced':
         if pos_mat == {(1,1), (3,1), (5,1), (7,1)}:
             return random.choice(ZACETNE_POTEZE)
@@ -286,7 +287,7 @@ def analiza(position, difficulty):
 
             
 
-
+# Dodatne funkcije za pomoč pri analiziranju
 
 def mozne_poteze(pos_nabor):
     pridobljene_pozicije = []
@@ -358,7 +359,7 @@ def zapis_position(pos_mat):
     return position
 
 
-
+# Glavna funkcija, ki združuje delovanje v celoto.
 
 def maschine(position, difficulty):
     nova_pozicija_nabor = analiza(position, difficulty)
